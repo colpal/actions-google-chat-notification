@@ -89,3 +89,5 @@ const notify = async (name, url, status) => {
     throw new Error(`Google Chat notification failed. response status=${response.status}`);
   }
 };
+
+module.exports = { notify };

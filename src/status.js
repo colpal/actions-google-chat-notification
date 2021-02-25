@@ -9,3 +9,5 @@ const parse = (status) => {
       throw Error(`Invalid parameter. status=${status}.`);
   }
 };
+
+module.exports = { parse };
