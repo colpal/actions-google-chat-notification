@@ -49,7 +49,7 @@ const notify = async (name, url, status) => {
         {
           widgets: [{
             textParagraph: {
-              text: `<b>${name} <font color="${statusColorPalette[status]}">${statusText[status]}</font></b>`,
+              text: `<b>${name} <font color="${statusColorPalette(status)}">${statusText(status)}</font></b>`,
             },
           }],
         },
