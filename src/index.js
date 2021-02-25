@@ -10,14 +10,14 @@ const run = async () => {
     const status = JobStatus.parse(core.getInput('status', { required: true }));
     const customText = core.getInput('custom_text', { required: false });
 
-    core.debug(`input params: name=${name}, `
+    console.log(`input params: name=${name}, `
                + `status=${status}, `
                + `url=${url}, `
                + `user=${user}, `
                + `custom_text=${customText}`);
 
     await GoogleChat.notify(name, url, status);
-    console.info('Sent message.');
+    console.log('Sent message.');
   } catch (error) {
     core.setFailed(error.message);
   }
