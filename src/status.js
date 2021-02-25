@@ -1,6 +1,4 @@
-export type Status = 'success' | 'failure' | 'cancelled';
-
-export function parse(status: string): Status {
+const parse = (status) => {
   const s = status.toLowerCase()
   switch (s) {
     case 'success':

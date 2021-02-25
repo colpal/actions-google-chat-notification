@@ -1,39 +1,25 @@
 {
-  "name": "google-chat-notification",
-  "version": "0.1.0",
-  "private": true,
-  "description": "Google Chat Notification for GitHub Actions",
-  "main": "dist/index.js",
   "scripts": {
-    "build": "ncc build src/main.ts",
-    "test": "jest"
+    "build": "webpack"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Co-qn/google-chat-notification"
-  },
-  "keywords": [
-    "actions",
-    "node",
-    "setup"
-  ],
-  "author": "Co-qn",
-  "license": "MIT",
-  "dependencies": {
-    "@actions/core": "^1.2.6",
-    "@actions/github": "^1.0.0",
-    "axios": "^0.21.1",
-    "node-notifier": "^8.0.1"
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run build && git add dist/main.js"
+    }
   },
   "devDependencies": {
-    "@types/jest": "^24.0.25",
-    "@types/node": "^12.0.4",
-    "@types/axios": "^0.14.0",
-    "@zeit/ncc": "^0.20.5",
-    "jest": "^24.9.0",
-    "jest-circus": "^24.9.0",
-    "ts-jest": "^24.3.0",
-    "typescript": "^3.5.1",
-    "node-notifier": "^8.0.1"
+    "eslint": "^7.4.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "husky": "^4.2.5",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12"
+  },
+  "dependencies": {
+    "@actions/core": "^1.2.4",
+    "@actions/exec": "^1.0.4",
+    "@actions/github": "^1.0.0",
+    "@actions/glob": "^0.1.0",
+    "axios": "^0.21.1"
   }
 }

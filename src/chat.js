@@ -1,27 +1,40 @@
-import * as github from '@actions/github';
-import * as axios from 'axios';
-import { Status } from './status';
+const github = require('@actions/github');
+const axios = require('axios');
 
-const statusColorPalette: { [key in Status]: string } = {
-  success: "#2cbe4e",
-  cancelled: "#ffc107",
-  failure: "#ff0000"
+const statusColorPalette = (status) => {
+  switch (status) {
+    case 'success':
+      return "#2cbe4e";
+    case 'failure':
+      return "#ff0000";
+    case 'cancelled':
+      return "#ffc107";
+    default:
+      throw Error(`Invalid parameter. status=${status}.`)
+  }
 };
 
-const statusText: { [key in Status]: string } = {
-  success: "Succeeded",
-  cancelled: "Cancelled",
-  failure: "Failed"
+const statusText = (status) => {
+  switch (status) {
+    case 'success':
+      return "Succeeded";
+    case 'failure':
+      return "Failed";
+    case 'cancelled':
+      return "Cancelled";
+    default:
+      throw Error(`Invalid parameter. status=${status}.`)
+  }
 };
 
-const textButton = (text: string, url: string) => ({
+const textButton = (text, url) => ({
   textButton: {
     text,
     onClick: { openLink: { url } }
   }
 });
 
-export async function notify(name: string, url: string, status: Status) {
+const notify = async(name, url, status) => {
   const { owner, repo } = github.context.repo;
   const { eventName, sha, ref } = github.context;
   const { number } = github.context.issue;
