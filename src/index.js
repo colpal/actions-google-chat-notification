@@ -2,7 +2,7 @@ const core = require('@actions/core');
 const JobStatus = require('./status');
 const GoogleChat = require('./chat');
 
-const run = async () => {
+const run = () => {
   try {
     const name = core.getInput('name', { required: true });
     const url = core.getInput('url', { required: true });
@@ -16,7 +16,7 @@ const run = async () => {
                + `user=${user}, `
                + `custom_text=${customText}`);
 
-    await GoogleChat.notify(name, url, status);
+    GoogleChat.notify(name, url, status);
     console.log('Sent message.');
   } catch (error) {
     core.setFailed(error.message);
