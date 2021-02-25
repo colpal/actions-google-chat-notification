@@ -37,6 +37,7 @@ const textButton = (text, url) => ({
 const notify = async (name, url, status) => {
   const { owner, repo } = github.context.repo;
   const { eventName, sha, ref } = github.context;
+  console.log(github.context);
   const { number } = github.context.issue;
   const repoUrl = `https://github.com/${owner}/${repo}`;
   const eventPath = eventName === 'pull_request' ? `/pull/${number}` : `/commit/${sha}`;
