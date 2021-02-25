@@ -4,37 +4,37 @@ const axios = require('axios');
 const statusColorPalette = (status) => {
   switch (status) {
     case 'success':
-      return "#2cbe4e";
+      return '#2cbe4e';
     case 'failure':
-      return "#ff0000";
+      return '#ff0000';
     case 'cancelled':
-      return "#ffc107";
+      return '#ffc107';
     default:
-      throw Error(`Invalid parameter. status=${status}.`)
+      throw Error(`Invalid parameter. status=${status}.`);
   }
 };
 
 const statusText = (status) => {
   switch (status) {
     case 'success':
-      return "Succeeded";
+      return 'Succeeded';
     case 'failure':
-      return "Failed";
+      return 'Failed';
     case 'cancelled':
-      return "Cancelled";
+      return 'Cancelled';
     default:
-      throw Error(`Invalid parameter. status=${status}.`)
+      throw Error(`Invalid parameter. status=${status}.`);
   }
 };
 
 const textButton = (text, url) => ({
   textButton: {
     text,
-    onClick: { openLink: { url } }
-  }
+    onClick: { openLink: { url } },
+  },
 });
 
-const notify = async(name, url, status) => {
+const notify = async (name, url, status) => {
   const { owner, repo } = github.context.repo;
   const { eventName, sha, ref } = github.context;
   const { number } = github.context.issue;
@@ -49,43 +49,43 @@ const notify = async(name, url, status) => {
         {
           widgets: [{
             textParagraph: {
-              text: `<b>${name} <font color="${statusColorPalette[status]}">${statusText[status]}</font></b>`
-            }
-          }]
+              text: `<b>${name} <font color="${statusColorPalette[status]}">${statusText[status]}</font></b>`,
+            },
+          }],
         },
         {
           widgets: [
             {
               keyValue: {
-                topLabel: "repository",
+                topLabel: 'repository',
                 content: `${owner}/${repo}`,
                 contentMultiline: true,
-                button: textButton("OPEN REPOSITORY", repoUrl)
-              }
+                button: textButton('OPEN REPOSITORY', repoUrl),
+              },
             },
             {
               keyValue: {
-                topLabel: "event name",
+                topLabel: 'event name',
                 content: eventName,
-                button: textButton("OPEN EVENT", eventUrl)
-              }
+                button: textButton('OPEN EVENT', eventUrl),
+              },
             },
             {
-              keyValue: { topLabel: "ref", content: ref }
-            }
-          ]
+              keyValue: { topLabel: 'ref', content: ref },
+            },
+          ],
         },
         {
           widgets: [{
-            buttons: [textButton("OPEN CHECKS", checksUrl)]
-          }]
-        }
-      ]
-    }]
+            buttons: [textButton('OPEN CHECKS', checksUrl)],
+          }],
+        },
+      ],
+    }],
   };
 
   const response = await axios.default.post(url, body);
   if (response.status !== 200) {
     throw new Error(`Google Chat notification failed. response status=${response.status}`);
   }
-}
+};

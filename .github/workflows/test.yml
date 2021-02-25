@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Google Chat Notification
-        uses: Co-qn/google-chat-notification@releases/v1
+        uses: ./
         with:
           name: Build
           url: ${{ secrets.GOOGLE_CHAT_WEBHOOK }}
