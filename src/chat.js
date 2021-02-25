@@ -36,13 +36,17 @@ const textButton = (text, url) => ({
 
 const notify = async (name, url, status) => {
   const { owner, repo } = github.context.repo;
-  const { eventName, sha, ref, actor } = github.context;
+  const {
+    eventName, sha, ref, actor,
+  } = github.context;
+  const actorAvatar = github.context.payload.sender.avatar_url;
   console.log(github.context);
   const { number } = github.context.issue;
   const repoUrl = `https://github.com/${owner}/${repo}`;
   const eventPath = eventName === 'pull_request' ? `/pull/${number}` : `/commit/${sha}`;
   const eventUrl = `${repoUrl}${eventPath}`;
   const checksUrl = `${repoUrl}${eventPath}/checks`;
+  const profileUrl = `https://github.com/${actor}`;
 
   const body = {
     cards: [{
@@ -75,7 +79,13 @@ const notify = async (name, url, status) => {
               keyValue: { topLabel: 'ref', content: ref },
             },
             {
-              keyValue: { topLabel: 'actor', content: actor },
+              keyValue: {
+                topLabel: 'actor',
+                content: actor,
+                button: textButton('OPEN PROFILE', profileUrl),
+                imageUrl: actorAvatar,
+                imageStyle: 'IMAGE',
+              },
             },
           ],
         },
