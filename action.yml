@@ -15,8 +15,8 @@ inputs:
     description: "User who initiated PR"
     required: false
 runs:
-  using: 'node12'
-  main: 'dist/index.js'
+  using: node12
+  main: dist/main.js
 branding:
   icon: 'bell'
   color: 'green'
