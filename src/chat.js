@@ -81,6 +81,11 @@ const notify = async (name, url, status) => {
               keyValue: {
                 topLabel: 'ref',
                 content: ref,
+                onClick: {
+                  openLink: {
+                    url: 'https://example.com/',
+                  },
+                },
               },
             },
           ],
