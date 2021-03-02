@@ -55,17 +55,19 @@ const notify = async (name, url, status, customText) => {
     cards: [{
       sections: [
         {
-          widgets: [{
-            textParagraph: {
-              text: `<b>${name} <font color="${statusColorPalette(status)}">${statusText(status)}</font></b>`,
-            },
-          }],
-        },
-        {
           widgets: [
+            {
+              textParagraph: {
+                text: `<b>${name} <font color="${statusColorPalette(status)}">${statusText(status)}</font></b>`,
+              },
+            },
             {
               textParagraph: { text: 'Click on any of the following sections for more information.' },
             },
+          ],
+        },
+        {
+          widgets: [
             {
               keyValue: {
                 topLabel: 'Actor:',
