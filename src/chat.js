@@ -97,7 +97,7 @@ const notify = async (name, url, status) => {
 
   const response = await axios.default.post(url, body);
   if (response.status !== 200) {
-    throw new Error(`Google Chat notification failed. response status=${response.status}`);
+    throw new Error(`Google Chat notification failed. response status=${response.status}\nResponse message=${response.data}`);
   }
 };
 
