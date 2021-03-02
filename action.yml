@@ -11,7 +11,7 @@ inputs:
   status:
     description: 'job status.'
     required: true
-  customText:
+  custom_text:
     description: 'Custom text to show in message. Supports HTML tags.'
     required: false
 runs:
