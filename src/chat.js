@@ -77,13 +77,6 @@ const notify = async (name, url, status) => {
                 button: textButton('OPEN EVENT', eventUrl),
               },
             },
-            {
-              keyValue: {
-                topLabel: 'ref',
-                content: ref,
-                onClick: { openLink: { refUrl } },
-              },
-            },
           ],
         },
         {
