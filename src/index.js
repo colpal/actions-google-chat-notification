@@ -6,17 +6,15 @@ const run = async () => {
   try {
     const name = core.getInput('name', { required: true });
     const url = core.getInput('url', { required: true });
-    const user = core.getInput('user', { required: false });
     const status = JobStatus.parse(core.getInput('status', { required: true }));
     const customText = core.getInput('custom_text', { required: false });
 
     console.log(`input params: name=${name}, `
                + `status=${status}, `
                + `url=${url}, `
-               + `user=${user}, `
                + `custom_text=${customText}`);
 
-    await GoogleChat.notify(name, url, status);
+    await GoogleChat.notify(name, url, status, customText);
     console.log('Sent message.');
   } catch (error) {
     core.setFailed(error.message);

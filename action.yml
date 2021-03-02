@@ -11,8 +11,8 @@ inputs:
   status:
     description: 'job status.'
     required: true
-  user:
-    description: "User who initiated PR"
+  customText:
+    description: 'Custom text to show in message. Supports HTML tags.'
     required: false
 runs:
   using: node12

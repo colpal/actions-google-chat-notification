@@ -34,7 +34,7 @@ const textButton = (text, url) => ({
   },
 });
 
-const notify = async (name, url, status) => {
+const notify = async (name, url, status, customText) => {
   const { owner, repo } = github.context.repo;
   const {
     eventName, sha, ref, actor,
@@ -49,6 +49,7 @@ const notify = async (name, url, status) => {
   const eventUrl = `${repoUrl}${eventPath}`;
   const checksUrl = `${repoUrl}${eventPath}/checks`;
   const profileUrl = `https://github.com/${actor}`;
+  const customMessage = customText || 'No custom message was provided';
 
   const body = {
     cards: [{
@@ -64,7 +65,7 @@ const notify = async (name, url, status) => {
           widgets: [
             {
               keyValue: {
-                topLabel: 'repository',
+                topLabel: 'Repository:',
                 content: `${owner}/${repo}`,
                 contentMultiline: true,
                 onClick: {
@@ -76,7 +77,7 @@ const notify = async (name, url, status) => {
             },
             {
               keyValue: {
-                topLabel: 'event name',
+                topLabel: 'Event Name',
                 content: eventName,
                 onClick: {
                   openLink: {
@@ -87,7 +88,7 @@ const notify = async (name, url, status) => {
             },
             {
               keyValue: {
-                topLabel: 'ref',
+                topLabel: 'Ref:',
                 content: ref,
                 onClick: {
                   openLink: {
@@ -98,7 +99,7 @@ const notify = async (name, url, status) => {
             },
             {
               keyValue: {
-                topLabel: 'actor',
+                topLabel: 'Actor:',
                 content: actor,
                 iconUrl: actorAvatar,
                 onClick: {
@@ -107,6 +108,9 @@ const notify = async (name, url, status) => {
                   },
                 },
               },
+            },
+            {
+              textParagraph: { text: customMessage },
             },
           ],
         },
