@@ -1,5 +1,4 @@
 # Google Chat Notification for GitHub Actions
-![](https://github.com/Co-qn/google-chat-notification/workflows/Build/badge.svg)
 
 Sends a Google Chat notification.
 
