@@ -20,7 +20,7 @@ Clicking on any section will take you to a webpage with more information on that
 ### Examples
 ```yaml
 - name: Google Chat Notification
-  uses: Co-qn/google-chat-notification@releases/v1
+  uses: colpal/actions-google-chat-notification@releases/v1
   with:
     name: Build
     url: ${{ secrets.GOOGLE_CHAT_WEBHOOK }}
