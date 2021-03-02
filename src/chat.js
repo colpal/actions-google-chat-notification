@@ -43,7 +43,7 @@ const notify = async (name, url, status) => {
   console.log(github.context);
   const { number } = github.context.issue;
   const repoUrl = `https://github.com/${owner}/${repo}`;
-  const branch = ref.split('/')[ref.length - 1].pop();
+  const branch = ref.split('/').pop();
   const refUrl = `${repoUrl}/tree/${branch}`;
   const eventPath = eventName === 'pull_request' ? `/pull/${number}` : `/commit/${sha}`;
   const eventUrl = `${repoUrl}${eventPath}`;
