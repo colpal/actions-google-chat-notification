@@ -62,7 +62,7 @@ const notify = async (name, url, status, customText) => {
               },
             },
             {
-              textParagraph: { text: 'Click on any of the following sections for more information.' },
+              textParagraph: { text: 'Click on any section for more information.' },
             },
           ],
         },
