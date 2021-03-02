@@ -82,13 +82,8 @@ const notify = async (name, url, status) => {
               keyValue: {
                 topLabel: 'actor',
                 content: actor,
-                onClick: {
-                  openLink: {
-                    url: profileUrl,
-                  },
-                },
-                imageUrl: actorAvatar,
-                imageStyle: 'IMAGE',
+                button: textButton('OPEN PROFILE', profileUrl),
+                iconUrl: profileUrl,
               },
             },
           ],
