@@ -96,6 +96,17 @@ const notify = async (name, url, status) => {
                 },
               },
             },
+            {
+              keyValue: {
+                topLabel: 'actor',
+                content: actor,
+                onClick: {
+                  openLink: {
+                    url: profileUrl,
+                  },
+                },
+              },
+            },
           ],
         },
         {
