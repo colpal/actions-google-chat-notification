@@ -14,4 +14,5 @@ jobs:
           name: Build
           url: ${{ secrets.GOOGLE_CHAT_WEBHOOK }}
           status: ${{ job.status }}
+          custom_text: 'This failed because you are bad.'
         if: always()

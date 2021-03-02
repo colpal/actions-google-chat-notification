@@ -49,7 +49,7 @@ const notify = async (name, url, status, customText) => {
   const eventUrl = `${repoUrl}${eventPath}`;
   const checksUrl = `${repoUrl}${eventPath}/checks`;
   const profileUrl = `https://github.com/${actor}`;
-  const customMessage = customText || 'No custom message was provided';
+  const customMessage = customText || 'No custom message was provided.';
 
   const body = {
     cards: [{
