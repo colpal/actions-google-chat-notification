@@ -40,11 +40,11 @@ const notify = async (name, url, status) => {
     eventName, sha, ref, actor,
   } = github.context;
   const actorAvatar = github.context.payload.sender.avatar_url;
-  console.log(github.context);
   const { number } = github.context.issue;
   const repoUrl = `https://github.com/${owner}/${repo}`;
   const branch = ref.split('/').pop();
   const refUrl = `${repoUrl}/tree/${branch}`;
+  console.log(refUrl);
   const eventPath = eventName === 'pull_request' ? `/pull/${number}` : `/commit/${sha}`;
   const eventUrl = `${repoUrl}${eventPath}`;
   const checksUrl = `${repoUrl}${eventPath}/checks`;
@@ -83,7 +83,7 @@ const notify = async (name, url, status) => {
                 content: ref,
                 onClick: {
                   openLink: {
-                    url: 'https://example.com/',
+                    url: refUrl,
                   },
                 },
               },
