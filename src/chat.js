@@ -65,6 +65,18 @@ const notify = async (name, url, status, customText) => {
           widgets: [
             {
               keyValue: {
+                topLabel: 'Actor:',
+                content: actor,
+                iconUrl: actorAvatar,
+                onClick: {
+                  openLink: {
+                    url: profileUrl,
+                  },
+                },
+              },
+            },
+            {
+              keyValue: {
                 topLabel: 'Repository:',
                 content: `${owner}/${repo}`,
                 contentMultiline: true,
@@ -77,7 +89,7 @@ const notify = async (name, url, status, customText) => {
             },
             {
               keyValue: {
-                topLabel: 'Event Name',
+                topLabel: 'Event Name:',
                 content: eventName,
                 onClick: {
                   openLink: {
@@ -97,27 +109,17 @@ const notify = async (name, url, status, customText) => {
                 },
               },
             },
-            {
-              keyValue: {
-                topLabel: 'Actor:',
-                content: actor,
-                iconUrl: actorAvatar,
-                onClick: {
-                  openLink: {
-                    url: profileUrl,
-                  },
-                },
-              },
-            },
-            {
-              textParagraph: { text: customMessage },
-            },
           ],
         },
         {
-          widgets: [{
-            buttons: [textButton('OPEN CHECKS', checksUrl)],
-          }],
+          widgets: [
+            {
+              textParagraph: { text: customMessage },
+            },
+            {
+              buttons: [textButton('OPEN CHECKS', checksUrl)],
+            },
+          ],
         },
       ],
     }],
