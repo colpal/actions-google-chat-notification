@@ -67,14 +67,22 @@ const notify = async (name, url, status) => {
                 topLabel: 'repository',
                 content: `${owner}/${repo}`,
                 contentMultiline: true,
-                button: textButton('OPEN REPOSITORY', repoUrl),
+                onClick: {
+                  openLink: {
+                    url: repoUrl,
+                  },
+                },
               },
             },
             {
               keyValue: {
                 topLabel: 'event name',
                 content: eventName,
-                button: textButton('OPEN EVENT', eventUrl),
+                onClick: {
+                  openLink: {
+                    url: eventUrl,
+                  },
+                },
               },
             },
             {
