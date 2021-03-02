@@ -64,6 +64,9 @@ const notify = async (name, url, status, customText) => {
         {
           widgets: [
             {
+              textParagraph: { text: 'Click on any of the following sections for more information.' },
+            },
+            {
               keyValue: {
                 topLabel: 'Actor:',
                 content: actor,
