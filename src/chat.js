@@ -83,7 +83,7 @@ const notify = async (name, url, status) => {
                 topLabel: 'actor',
                 content: actor,
                 button: textButton('OPEN PROFILE', profileUrl),
-                iconUrl: profileUrl,
+                iconUrl: actorAvatar,
               },
             },
           ],
