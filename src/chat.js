@@ -100,6 +100,7 @@ const notify = async (name, url, status) => {
               keyValue: {
                 topLabel: 'actor',
                 content: actor,
+                iconUrl: profileUrl,
                 onClick: {
                   openLink: {
                     url: profileUrl,
