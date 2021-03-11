@@ -51,7 +51,7 @@ const notify = async (name, url, status, customText, customTextFile) => {
   const checksUrl = `${repoUrl}${eventPath}/checks`;
   const profileUrl = `https://github.com/${actor}`;
   const fileText = customTextFile ? fs.readFileSync(customTextFile, 'utf8') : null;
-  const customMessage = customText || fileText || 'No custom message was provided.';
+  const customMessage = `Message:\n${customText || fileText || 'No custom message was provided.'}`;
 
   const body = {
     cards: [{
