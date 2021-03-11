@@ -35,6 +35,15 @@ const textButton = (text, url) => ({
   },
 });
 
+const try$ = (testFunction) => {
+  try {
+    return testFunction();
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
+};
+
 const notify = async (name, url, status, customText, customTextFile) => {
   const { owner, repo } = github.context.repo;
   const {
@@ -49,14 +58,7 @@ const notify = async (name, url, status, customText, customTextFile) => {
   const eventUrl = `${repoUrl}${eventPath}`;
   const checksUrl = `${repoUrl}${eventPath}/checks`;
   const profileUrl = `https://github.com/${actor}`;
-  const fileText = () => {
-    try {
-      return customTextFile ? fs.readFileSync(customTextFile, 'utf8') : null;
-    } catch (err) {
-      console.log(err);
-      return null;
-    }
-  };
+  const fileText = try$(fs.readFileSync(customTextFile, 'utf8'));
 
   const customMessage = `Message:\n${customText || fileText || 'No custom message was provided.'}`;
 
