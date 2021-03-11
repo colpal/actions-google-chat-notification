@@ -19,5 +19,5 @@ jobs:
           name: Build
           url: ${{ secrets.GOOGLE_CHAT_WEBHOOK }}
           status: ${{ job.status }}
-          custom_text: errors.txt
+          custom_text_file: errors.txt
         if: always()
