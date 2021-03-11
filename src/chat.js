@@ -1,5 +1,6 @@
 const github = require('@actions/github');
 const axios = require('axios');
+const fs = require('fs');
 
 const statusColorPalette = (status) => {
   switch (status) {
@@ -34,7 +35,7 @@ const textButton = (text, url) => ({
   },
 });
 
-const notify = async (name, url, status, customText) => {
+const notify = async (name, url, status, customText, customTextFile) => {
   const { owner, repo } = github.context.repo;
   const {
     eventName, sha, ref, actor,
@@ -49,7 +50,8 @@ const notify = async (name, url, status, customText) => {
   const eventUrl = `${repoUrl}${eventPath}`;
   const checksUrl = `${repoUrl}${eventPath}/checks`;
   const profileUrl = `https://github.com/${actor}`;
-  const customMessage = customText || 'No custom message was provided.';
+  const fileText = customTextFile ? fs.readFileSync(customTextFile, 'utf8') : null;
+  const customMessage = customText || fileText || 'No custom message was provided.';
 
   const body = {
     cards: [{

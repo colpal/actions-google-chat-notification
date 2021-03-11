@@ -12,7 +12,10 @@ inputs:
     description: 'job status.'
     required: true
   custom_text:
-    description: 'Custom text to show in message. Supports HTML tags.'
+    description: 'Custom text to show in message. Supports HTML tags. Takes precedence over `custom_text_file`.'
+    required: false
+  custom_text_file:
+    description: 'File containing custom text to show in message. Supports HTML tags. `custom_text` takes precedence.'
     required: false
 runs:
   using: node12
