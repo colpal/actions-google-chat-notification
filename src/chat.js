@@ -45,12 +45,19 @@ const notify = async (name, url, status, customText, customTextFile) => {
   const repoUrl = `https://github.com/${owner}/${repo}`;
   const branch = ref.split('/').pop();
   const refUrl = `${repoUrl}/tree/${branch}`;
-  console.log(refUrl);
   const eventPath = eventName === 'pull_request' ? `/pull/${number}` : `/commit/${sha}`;
   const eventUrl = `${repoUrl}${eventPath}`;
   const checksUrl = `${repoUrl}${eventPath}/checks`;
   const profileUrl = `https://github.com/${actor}`;
-  const fileText = customTextFile ? fs.readFileSync(customTextFile, 'utf8') : null;
+  const fileText = () => {
+    try {
+      return customTextFile ? fs.readFileSync(customTextFile, 'utf8') : null;
+    } catch (err) {
+      console.log(err);
+      return null;
+    }
+  };
+
   const customMessage = `Message:\n${customText || fileText || 'No custom message was provided.'}`;
 
   const body = {
