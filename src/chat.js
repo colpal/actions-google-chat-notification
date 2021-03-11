@@ -35,13 +35,19 @@ const textButton = (text, url) => ({
   },
 });
 
-const try$ = (testFunction) => {
-  try {
-    return testFunction();
-  } catch (err) {
-    console.log(err);
-    return null;
+const try$ = (a) => {
+  if (a instanceof Function) {
+    try {
+      return [null, a()];
+    } catch (err) {
+      return [err, null];
+    }
+  } else if (a instanceof Promise) {
+    return a
+      .then((x) => [null, x])
+      .catch((err) => [err, null]);
   }
+  return ['try$ was not invoked with an eligible argument', null];
 };
 
 const notify = async (name, url, status, customText, customTextFile) => {
@@ -58,7 +64,7 @@ const notify = async (name, url, status, customText, customTextFile) => {
   const eventUrl = `${repoUrl}${eventPath}`;
   const checksUrl = `${repoUrl}${eventPath}/checks`;
   const profileUrl = `https://github.com/${actor}`;
-  const fileText = try$(fs.readFileSync(customTextFile, 'utf8'));
+  const fileText = try$(fs.readFileSync(customTextFile, 'utf8'))[1];
 
   const customMessage = `Message:\n${customText || fileText || 'No custom message was provided.'}`;
 
