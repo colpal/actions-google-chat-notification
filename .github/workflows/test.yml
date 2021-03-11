@@ -8,11 +8,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.3.1
+
+      - name: Fail Action
+        id: FailAction
+        run: cat doesNotExist.txt 2> errors.txt
+
       - name: Google Chat Notification
-        uses: ./
+        uses: colpal/actions-google-chat-notification@v1.1.0
         with:
           name: Build
           url: ${{ secrets.GOOGLE_CHAT_WEBHOOK }}
           status: ${{ job.status }}
-          custom_text: 'This failed because you are bad.'
+          custom_text: errors.txt
         if: always()
