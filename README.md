@@ -15,7 +15,8 @@ Clicking on any section will take you to a webpage with more information on that
 |name|true|Job name. Used for notification titles.|
 |url|true|Google Chat Webhook URL.|
 |status|true|Job status. Available values are `success`, `failure`, `cancelled`. We recommend using `${{ job.status }}`|
-|custom_text|false|Custom text to show in message. Supports HTML tags.|
+|custom_text|false|Custom text to show in message. Supports HTML tags. Takes precedence over `custom_text_file`.|
+|custom_text_file|false|File containing custom text to show in message. Supports HTML tags. `custom_text` takes precedence.|
 
 ### Examples
 ```yaml
