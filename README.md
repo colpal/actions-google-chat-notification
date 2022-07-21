@@ -1,4 +1,6 @@
-# Archived due to lack of maintanership. Reach out if you would like to apply for maintenance
+# Archived due to lack of maintanership
+
+Reach out if you would like to maintain this project
 
 # Google Chat Notification for GitHub Actions
 
